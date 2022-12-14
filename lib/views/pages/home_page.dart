@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/utils.dart';
+import '../widgets/tile_board_game_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -11,8 +12,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final widthSizeBoardGame = Responsive.distancePercentFromWidth(context, 74.2718);
-
+    final boardGameWidthSize = 
+      Responsive.distancePercentFromWidth(context, 74.2718);
+    
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColorLight,
       body: Column(
@@ -79,10 +81,38 @@ class HomePage extends StatelessWidget {
             height: Responsive.distancePercentFromHeight(context, 6.2780),
           ),
 
-          Container(
-            width: widthSizeBoardGame,
-            height: widthSizeBoardGame,
-            color: Colors.black,
+          //BoardGame
+          SizedBox(
+            width: boardGameWidthSize,
+            height: boardGameWidthSize,
+            child: Column(
+              children: [
+                Row(
+                  children: const [
+                    TileBoardGameWidget(right: true, bottom: true),
+                    TileBoardGameWidget(right: true, bottom: true),
+                    TileBoardGameWidget(bottom: true),
+
+                  ],
+                ),
+                Row(
+                  children: const [
+                    TileBoardGameWidget(right: true, bottom: true),
+                    TileBoardGameWidget(right: true, bottom: true, isPlayerOne: false),
+                    TileBoardGameWidget(bottom: true, isPlayerOne: false),
+
+                  ],
+                ),
+                Row(
+                  children: const [
+                    TileBoardGameWidget(right: true),
+                    TileBoardGameWidget(right: true),
+                    TileBoardGameWidget(),
+
+                  ],
+                ),
+              ],
+            ),
           ),
 
           const Expanded(
@@ -101,3 +131,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+    
